@@ -104,20 +104,14 @@ class HTTPClient(object):
 
         srequest = "GET %s HTTP/1.1\r\n" % npath
         HHost = "Host: %s\r\n" % nhost
-
         GRequest = srequest+HHost+"Connection: close\r\n"+ "\r\n"
-
         self.connect(nhost, nport) 
         self.sendall(GRequest) # sending it
-
         Gresponse = self.recvall(self.socket) # server receiving 
         print(Gresponse)
-
         code = self.get_code(Gresponse)
         body = self.get_body(Gresponse)
-
         self.close()
-        
         return HTTPResponse(code, body)
         
 
